@@ -10,7 +10,7 @@ timeout /t 1 /nobreak > nul
 echo birbOS succesfully booted.
 :logscreen
 set /p "user=Username: "
-if "%user%"=="" set "user"="guest" && goto logon
+if "%user%"=="" set user=guest && goto logon
 if NOT EXIST users\%user% goto incor
 if not exist users\%user%\user.dll goto logon 
 set /p "pword=Password: "
