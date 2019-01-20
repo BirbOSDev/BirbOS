@@ -1,5 +1,5 @@
 @echo off
-set "osbuild=birbOS Build 7"
+set "osbuild=birbOS Build 7.2.1"
 title %osbuild%
 :mainstage
 cls
@@ -21,13 +21,13 @@ goto incor
 echo Login successful.
 echo.
 echo.
-echo       °°°°      °     °°°°°°      °°°°       °°°°      °°°°°
-echo       °   °           °     °     °   °     °    °    °
-echo       °    °    °     °     °     °    °    °    °   °
-echo       °°°°°     °     °°°°°°°     °°°°°     °    °   °°°°°°°
-echo       °    °    °     °°          °    °    °    °         °
-echo       °   °     °     °  °        °   °     °    °        °
-echo       °°°°      °     °   °°      °°°°       °°°°    °°°°°
+echo       Â°Â°Â°Â°      Â°     Â°Â°Â°Â°Â°Â°      Â°Â°Â°Â°       Â°Â°Â°Â°      Â°Â°Â°Â°Â°
+echo       Â°   Â°           Â°     Â°     Â°   Â°     Â°    Â°    Â°
+echo       Â°    Â°    Â°     Â°     Â°     Â°    Â°    Â°    Â°   Â°
+echo       Â°Â°Â°Â°Â°     Â°     Â°Â°Â°Â°Â°Â°Â°     Â°Â°Â°Â°Â°     Â°    Â°   Â°Â°Â°Â°Â°Â°Â°
+echo       Â°    Â°    Â°     Â°Â°          Â°    Â°    Â°    Â°         Â°
+echo       Â°   Â°     Â°     Â°  Â°        Â°   Â°     Â°    Â°        Â°
+echo       Â°Â°Â°Â°      Â°     Â°   Â°Â°      Â°Â°Â°Â°       Â°Â°Â°Â°    Â°Â°Â°Â°Â°
 echo.
 echo.
 color 1a
