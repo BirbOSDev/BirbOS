@@ -169,6 +169,7 @@ cd users\%user%
 set /p docName="Enter document name : "
 set /p private="Make file private? (Y/N) : "
 echo.> %docName%.txt
+echo nul>>privatedocs.binfo
 if %private%==Y echo %docName%.txt>>privatedocs.binfo
 echo Type "exit.." to exit. Press enter to add new line.
 cls
