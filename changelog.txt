@@ -1,0 +1,56 @@
+birbOS Changelog
+==========================================
+
+Build 1:
+- Main development began.
+
+Build 2: 
+- Added login feature.
+- Improved boot time.
+- Added shutdown feature.
+- Added BSOD [birb screen of death] on login fail.
+
+Build 3:
+- Added rebooting command.
+- Fixed bugs.
+- Improved BIOS.
+- Added built-in calculator.
+- Working on 'grab-sourcecode' command.
+
+Build 4:
+- Added shutdown command.
+- Added "grab-sourcecode" command (for .exe version of birbOS)
+
+Build 5:
+- Colour resets after login fail.
+- Added guessing game.
+- Added "stfu" command. (Inspired by xandrei's bot, SockBot)
+- Added "cls" command. (clears the screen)
+- birbOS no longer crashes when you enter in more than one word as the input.
+
+Build 6
+- Improved BIOS.
+- Added bootloader with options to boot from HDD, CD-ROM or shutdown.
+- Added "help" command. (displays available commands)
+- Added "about" command. (information about birbOS)
+- Added "changelog" command. (displays the full changelog.)
+
+Build 7
+- Added a nice BIRBOS logo at login.
+- Fixed guess-game command.
+- Added "logoff" command. (puts you to login screen without restarting whole OS).
+- Added guest account. (accessible by putting "guest" as the username).
+- Added birbOS_UserTool! (creates accounts).
+- Working on games under 64kb. (games folder).
+- New dev!
+
+Build 7.1
+- Remade user system.
+
+Build 7.2
+- Added "writedoc" command (writes documents)
+- Added "readdoc" command (reads documents)
+
+Build 7.2.1
+- Added custom apps (birbapp files)
+- Added "runapp" command (runs .birbapps files)
