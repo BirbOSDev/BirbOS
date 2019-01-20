@@ -39,13 +39,13 @@ Build 7
 - Added a nice BIRBOS logo at login.
 - Fixed guess-game command.
 - Added "logoff" command. (puts you to login screen without restarting whole OS).
-- Added guest account. (accessible by putting "guest" as the username).
+- Added guest account. (accessible by pressing enter without putting anything at the username).
 - Added birbOS_UserTool! (creates accounts).
-- Working on games under 64kb. (games folder).
 - New dev!
 
 Build 7.1
 - Remade user system.
+- Added "folder" command (creates folders)
 
 Build 7.2
 - Added "writedoc" command (writes documents)
