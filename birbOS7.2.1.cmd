@@ -10,7 +10,7 @@ timeout /t 1 /nobreak > nul
 echo birbOS succesfully booted.
 :logscreen
 set /p "user=Username: "
-if "%user%"=="" set user=guest && goto logon
+if "%user%"=="" goto logon
 if NOT EXIST users\%user% goto incor
 if not exist users\%user%\user.dll goto logon 
 set /p "pword=Password: "
@@ -155,7 +155,7 @@ pause
 exit
 
 :folder
-if "%user%"=="guest" echo Guests can't create folders. && goto prompt2
+if "%user%"=="" echo Guests can't create folders. && goto prompt2
 set /p fname="Enter folder name: "
 cd users\%user%
 md %fname%
@@ -164,7 +164,7 @@ cd..
 goto prompt2
 
 :write
-if "%user%"=="guest" echo Guests can't create documents. && goto prompt2
+if "%user%"=="" echo Guests can't create documents. && goto prompt2
 cd users\%user%
 set /p docName="Enter document name : "
 set /p private="Make file private? (Y/N) : "
@@ -180,7 +180,7 @@ set textLine=
 goto type
 
 :read
-if "%user%"=="guest" echo Guests can't read files && goto prompt2
+if "%user%"=="" echo Guests can't read files && goto prompt2
 set /p userread="Which user's doc. you want to read? : "
 if NOT EXIST users\%userread% echo User not found! goto prompt2
 set /p docread="What document do you want to read? (no .txt) : "
@@ -202,7 +202,7 @@ pause > nul
 goto prompt2
 
 :runapp
-if "%user%"=="guest" echo Guests can't run apps && goto prompt2
+if "%user%"=="" echo Guests can't run apps && goto prompt2
 set /p appti="Enter app name (without .birbapp) : "
 cd apps
 if NOT EXIST %appti%.birbapp echo App not found && goto prompt2
