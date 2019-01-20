@@ -1,5 +1,5 @@
 @echo off
-set "osbuild=birbOS Build 7.2.1"
+set "osbuild=birbOS Build 7"
 title %osbuild%
 :mainstage
 cls
@@ -9,11 +9,11 @@ timeout /t 1 /nobreak > nul
 :prompt
 echo birbOS succesfully booted.
 :logscreen
-set/p "user=Username: "
-if "%user%"=="" goto logon
+set /p "user=Username: "
+if "%user%"=="" set user="guest" && goto logon
 if NOT EXIST users\%user% goto incor
 if not exist users\%user%\user.dll goto logon 
-set/p "pword=Password: "
+set /p "pword=Password: "
 find /c "%pword%" users\%user%\user.dll > nul
 if %ERRORLEVEL%==0 goto logon
 goto incor
@@ -51,7 +51,7 @@ if "%input%"=="calculate" (goto :calculating)
 if "%input%"=="reboot" (echo Rebooting! && timeout 2 /nobreak > nul && start .\BOOTLOADER.CMD && exit)
 if "%input%"=="shutdown" (timeout 2 /nobreak > nul && goto shutdown)
 if "%input%"=="grab-sourcecode" (echo Save output to: (full path) && set /p chco= && copy %appdata%\birbos5.cmd %chco% && goto prompt2)
-if "%input%"=="help" (echo Commands are: help, owo, birb, calculate, reboot, shutdown, grab-sourcecode, stfu, guess-game, clear, changelog, about, logoff && goto :prompt2 )
+if "%input%"=="help" (echo Commands are: help, owo, birb, calculate, reboot, shutdown, grab-sourcecode, stfu, guess-game, clear, changelog, about, logoff, runapp, docwrite, docread, folder. && goto :prompt2 )
 if "%input%"=="stfu" (echo no u && goto :prompt2)
 if "%input%"=="guess-game" (echo Starting! && goto :gueeees)
 if "%input%"=="clear" (cls && goto :prompt2)
@@ -155,7 +155,7 @@ pause
 exit
 
 :folder
-if "%user%"=="" echo Guests can't create folders. && goto prompt2
+if "%user%"=="guest" echo Guests can't create folders. && goto prompt2
 set /p fname="Enter folder name: "
 cd users\%user%
 md %fname%
@@ -164,7 +164,7 @@ cd..
 goto prompt2
 
 :write
-if "%user%"=="" echo Guests can't create documents. && goto prompt2
+if "%user%"=="guest" echo Guests can't create documents. && goto prompt2
 cd users\%user%
 set /p docName="Enter document name : "
 set /p private="Make file private? (Y/N) : "
@@ -180,7 +180,7 @@ set textLine=
 goto type
 
 :read
-if "%user%"=="" echo Guests can't read files && goto prompt2
+if "%user%"=="guest" echo Guests can't read files && goto prompt2
 set /p userread="Which user's doc. you want to read? : "
 if NOT EXIST users\%userread% echo User not found! goto prompt2
 set /p docread="What document do you want to read? (no .txt) : "
@@ -202,7 +202,7 @@ pause > nul
 goto prompt2
 
 :runapp
-if "%user%"=="" echo Guests can't run apps && goto prompt2
+if "%user%"=="guest" echo Guests can't run apps && goto prompt2
 set /p appti="Enter app name (without .birbapp) : "
 cd apps
 if NOT EXIST %appti%.birbapp echo App not found && goto prompt2
@@ -210,7 +210,6 @@ copy %appti%.birbapp temp
 set temp=%random%
 rename temp\%appti%.birbapp temp_app%temp%.bat
 start temp\temp_app%temp%.bat
-cd..
 cd..
 goto prompt2
 
