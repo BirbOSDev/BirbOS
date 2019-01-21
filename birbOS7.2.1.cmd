@@ -1,4 +1,5 @@
 @echo off
+@echo off
 set "osbuild=birbOS Build 7"
 title %osbuild%
 :mainstage
