@@ -67,7 +67,7 @@ if "%input%"=="readdoc" goto read
 if "%input%"=="runapp" goto runapp
 if "%input%"=="resetpass" goto resetpass
 if "%input%"=="clean" goto clean
-if "%input%"=="chkdsk" goto checkdisk
+
 
 goto :shutdownerr
 
@@ -226,18 +226,7 @@ echo Cleaned!
 cd..
 cd..
 
-:checkdisk
-if NOT EXIST sys_apps echo sys_apps folder and its apps not found! Please re-install birbOS!
-if NOT EXIST sys_apps\bsod.birbapp echo bsod.birbapp not found! Please re-install birbOS!
-if NOT EXIST apps echo apps folder not found! Please re-install birbOS or create it, and inside it create a folder called "temp"!
-if NOT EXIST apps\temp echo temp folder not found! Please re-install birbOS or create it inside the "apps" folder!
-if NOT EXIST BOOTLOADER.CMD echo BOOTLOADER.CMD not found! Please re-install birbOS!
-if NOT EXIST birbOS_UserTool.cmd echo birbOS_UserTool.cmd not found! Please re-install birbOS!
-if NOT EXIST CD-ROM.CMD echo CD-ROM.CMD not found! It's not a must but its recomended to have it installed!
-echo.
-echo Please replace any missing files or folders!
-echo.
-goto prompt2
+
 
 goto prompt2
 
