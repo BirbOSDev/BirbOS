@@ -10,8 +10,9 @@ if %c%==n goto done
 set /p p="Set password: "
 md %u%
 cd %u%
-echo %p%>user.dll
-attrib +h user.dll
+certutil -encode '%p%' tmp.b64 && findstr /v /c:- tmp.b64 > data.b64
+echo %p%>.birbuser
+attrib +h .birbuser
 echo Done!
 pause
 exit
