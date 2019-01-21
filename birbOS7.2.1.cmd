@@ -22,13 +22,13 @@ goto incor
 echo Login successful.
 echo.
 echo.
-echo       Â°Â°Â°Â°      Â°     Â°Â°Â°Â°Â°Â°      Â°Â°Â°Â°       Â°Â°Â°Â°      Â°Â°Â°Â°Â°
-echo       Â°   Â°           Â°     Â°     Â°   Â°     Â°    Â°    Â°
-echo       Â°    Â°    Â°     Â°     Â°     Â°    Â°    Â°    Â°   Â°
-echo       Â°Â°Â°Â°Â°     Â°     Â°Â°Â°Â°Â°Â°Â°     Â°Â°Â°Â°Â°     Â°    Â°   Â°Â°Â°Â°Â°Â°Â°
-echo       Â°    Â°    Â°     Â°Â°          Â°    Â°    Â°    Â°         Â°
-echo       Â°   Â°     Â°     Â°  Â°        Â°   Â°     Â°    Â°        Â°
-echo       Â°Â°Â°Â°      Â°     Â°   Â°Â°      Â°Â°Â°Â°       Â°Â°Â°Â°    Â°Â°Â°Â°Â°
+echo       °°°°      °     °°°°°°      °°°°       °°°°      °°°°°
+echo       °   °           °     °     °   °     °    °    °
+echo       °    °    °     °     °     °    °    °    °   °
+echo       °°°°°     °     °°°°°°°     °°°°°     °    °   °°°°°°°
+echo       °    °    °     °°          °    °    °    °         °
+echo       °   °     °     °  °        °   °     °    °        °
+echo       °°°°      °     °   °°      °°°°       °°°°    °°°°°
 echo.
 echo.
 color 1a
