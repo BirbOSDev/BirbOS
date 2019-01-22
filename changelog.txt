@@ -62,3 +62,7 @@ Build 7.2.3
 - Title remaining the same after exiting guess game (FIXED)
 - Help displaying "docread" and "docwrite" which was wrong (FIXED)
 - Merged usertool, "chkdsk" command and bootloader in birbtool.cmd
+
+Build 7.2.4
+- Removed version from birbos.cmd
+- Solved critical login bug : could login with 1 character from actual password.
