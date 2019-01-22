@@ -18,7 +18,7 @@ echo Use "dsktool" to check the birbOS installation
 :ldr
 set/p "ldr=>"
 if "%ldr%"=="shutdown" (cls && echo Shutting down the system, please wait... && timeout /t 5 /nobreak > nul && exit)
-if "%ldr%"=="launch" (echo Booting from {3f79bb7-b435b05321-651daefd3}... && timeout /t 2 /nobreak > nul && start .\birbOS7.2.2.cmd && exit)
+if "%ldr%"=="launch" (echo Booting from {3f79bb7-b435b05321-651daefd3}... && timeout /t 2 /nobreak > nul && start .\birbOS7.2.3.cmd && exit)
 if "%ldr%"=="cdr" (echo Booting from CD-ROM... && timeout /t 2 /nobreak > nul && start .\CD-ROM.CMD && exit)
 if "%ldr%"=="usrtool" (echo Launching UserTool.... && timeout /t 3 /nobreak > nul && goto :start)
 if "%ldr%"=="dsktool" (echo Launching dsktool.... && timeout /t 3 /nobreak > nul && goto check)
