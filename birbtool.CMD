@@ -28,9 +28,8 @@ if "%ldr%"=="dsktool" (echo Launching dsktool.... && timeout /t 3 /nobreak > nul
 echo Invalid choice.
 goto :ldr
 
-:birbtool
-cd users
 :start
+cd users
 title User tool V1.0.
 set /p u="Enter username: "
 if EXIST %u% goto exist
@@ -40,7 +39,7 @@ if %c%==n goto done
 set /p p="Set password: "
 md %u%
 cd %u%
-certutil -encode '%p%' tmp.b64 && findstr /v /c:- tmp.b64 > data.b64
+
 echo %p%>.birbuser
 attrib +h .birbuser
 echo Done!
