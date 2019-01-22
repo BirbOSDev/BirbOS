@@ -115,13 +115,18 @@ if %varr% LSS 10000 goto qset
 echo Guess my number! (hint: it's between 30000 and 10000)
 set /p "num=>"
 :game2
+echo %num%| findstr /r "exit">nul
+if %ERRORLEVEL%==0 goto skip2223
+echo %num%| findstr /r "birb">nul
+if %ERRORLEVEL%==0 goto skip2223
 echo %num%| findstr /r "^[1-9][0-9]*$">nul
 if %ERRORLEVEL%==1 goto reguess
 if %ERRORLEVEL%==2 goto reguess
+:skip2223
+if "%num%"=="birb" (echo The answer is %varr% && goto :reguess)
+if "%num%"=="exit" (echo Exiting... && title %osbuild% && :prompt2)
 if /i %num% GTR %varr% (echo Lower! && goto reguess)
 if /i %num% LSS %varr% (echo Higher! && goto reguess)
-if "%num%"=="BIRB" (echo You're a birb, eh? The answer is %varr% && goto :game2)
-if "%num%"=="exit" (echo Exiting... && title %osbuild%)
 
 
 :win
