@@ -73,9 +73,9 @@ goto :shutdownerr
 
 :incor
 cls
-color cf
+color 04
 title U BWOKE A EULE
-echo Incorrect credentials. You are not a birb.
+echo Incorrect credentials.
 echo Press any key to try again.
 pause > nul
 color 07

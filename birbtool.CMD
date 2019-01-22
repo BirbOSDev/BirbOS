@@ -20,6 +20,7 @@ set/p "ldr=>"
 if "%ldr%"=="shutdown" (cls && echo Shutting down the system, please wait... && timeout /t 5 /nobreak > nul && exit)
 if "%ldr%"=="launch" (echo Booting from {3f79bb7-b435b05321-651daefd3}... && timeout /t 2 /nobreak > nul && start .\birbOS.cmd && exit)
 if "%ldr%"=="cdr" (echo Booting from CD-ROM... && timeout /t 2 /nobreak > nul && start .\CD-ROM.CMD && exit)
+if "%ldr%"=="CDR" (echo Booting from CD-ROM... && timeout /t 2 /nobreak > nul && start .\CD-ROM.CMD && exit)
 if "%ldr%"=="usrtool" (echo Launching UserTool.... && timeout /t 3 /nobreak > nul && goto :start)
 if "%ldr%"=="dsktool" (echo Launching dsktool.... && timeout /t 3 /nobreak > nul && goto check)
 
@@ -44,7 +45,7 @@ echo %p%>.birbuser
 attrib +h .birbuser
 echo Done!
 pause
-exit
+goto ldr
 
 :done
 md %u%
@@ -63,8 +64,6 @@ if NOT EXIST sys_apps echo sys_apps folder and its apps not found! Please re-ins
 if NOT EXIST sys_apps\bsod.birbapp echo bsod.birbapp not found! Please re-install birbOS!
 if NOT EXIST apps echo apps folder not found! Please re-install birbOS or create it, and inside it create a folder called "temp"!
 if NOT EXIST apps\temp echo temp folder not found! Please re-install birbOS or create it inside the "apps" folder!
-if NOT EXIST BOOTLOADER.CMD echo BOOTLOADER.CMD not found! Please re-install birbOS!
-if NOT EXIST birbOS_UserTool.cmd echo birbOS_UserTool.cmd not found! Please re-install birbOS!
 if NOT EXIST CD-ROM.CMD echo CD-ROM.CMD not found! It's not a must but its recomended to have it installed!
 echo.
 echo Please replace any missing files or folders!
