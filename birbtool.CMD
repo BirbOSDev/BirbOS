@@ -70,5 +70,4 @@ echo.
 echo Please replace any missing files or folders!
 echo.
 echo If no errors appeared you're fine!
-
-:goto ldr
+goto ldr

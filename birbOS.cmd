@@ -52,7 +52,7 @@ if "%input%"=="birb" (echo BIIIIIIRB && goto prompt2)
 if "%input%"=="calculate" (goto :calculating)
 if "%input%"=="reboot" (echo Rebooting! && timeout 2 /nobreak > nul && start .\BOOTLOADER.CMD && exit)
 if "%input%"=="shutdown" (timeout 2 /nobreak > nul && goto shutdown)
-if "%input%"=="help" (echo Commands are: help, owo, birb, calculate, reboot, shutdown, grab-sourcecode, stfu, guess-game, clear, changelog, about, logoff, runapp, docwrite, docread, folder. && goto :prompt2 )
+if "%input%"=="help" (echo Commands are: help, owo, birb, calculate, reboot, shutdown, grab-sourcecode, stfu, guess-game, clear, changelog, about, logoff, runapp, writedoc, readdoc, folder, clean. && goto :prompt2 )
 if "%input%"=="stfu" (echo no u && goto :prompt2)
 if "%input%"=="guess-game" (echo Starting! && goto :gueeees)
 if "%input%"=="clear" (cls && goto :prompt2)
@@ -124,7 +124,7 @@ if %ERRORLEVEL%==1 goto reguess
 if %ERRORLEVEL%==2 goto reguess
 :skip2223
 if "%num%"=="birb" (echo The answer is %varr% && goto :reguess)
-if "%num%"=="exit" (echo Exiting... && title %osbuild% && :prompt2)
+if "%num%"=="exit" (echo Exiting... && title %osbuild% && goto :prompt2)
 if /i %num% GTR %varr% (echo Lower! && goto reguess)
 if /i %num% LSS %varr% (echo Higher! && goto reguess)
 
