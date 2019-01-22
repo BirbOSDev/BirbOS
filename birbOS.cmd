@@ -120,8 +120,8 @@ if %ERRORLEVEL%==1 goto reguess
 if %ERRORLEVEL%==2 goto reguess
 if /i %num% GTR %varr% (echo Lower! && goto reguess)
 if /i %num% LSS %varr% (echo Higher! && goto reguess)
-if /i %num%==BIRB (echo You're a birb, eh? The answer is %varr% && goto :game2)
-if /i %num%==exit (echo Exiting... && title %osbuild%)
+if "%num%"=="BIRB" (echo You're a birb, eh? The answer is %varr% && goto :game2)
+if "%num%"=="exit" (echo Exiting... && title %osbuild%)
 
 
 :win
