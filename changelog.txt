@@ -53,7 +53,7 @@ Build 7.2
 
 Build 7.2.1
 - Added custom apps (.birbapp files)
-- Added "runapp" command (runs .birbapp files)
+- Added "runapp" command (runs .birbapp files within the apps folder)
 
 Build 7.2.2
 - Added "clean" command (clears temporary files)
@@ -61,8 +61,24 @@ Build 7.2.2
 Build 7.2.3
 - Title remaining the same after exiting guess game (FIXED)
 - Help displaying "docread" and "docwrite" which was wrong (FIXED)
-- Merged usertool, "chkdsk" command and bootloader in birbtool.cmd
+- Merged usertool, "chkdsk" command and bootloader into birbtool.cmd.
 
 Build 7.2.4
 - Removed version from birbos.cmd
-- Solved critical login bug : could login with 1 character from actual password.
+- Solved critical login bug: could login with 1 character from actual password.
+
+Build 8.0.0
+- Fixed a few login bugs.
+- Bug fixes.
+- Fixed minor BirbTool bugs.
+- More bug fixes.
+- Added "reboot /os" which restarts the OS instead of rebooting back to the bootloader.
+- Yet more bug fixes!
+- Added "shutdown /f" which forces a shutdown and closes the batch file immediately.
+- Removed all traces of the "grab-sourcecode" command, as this command will no longer be used.
+- You can change your password from birbTool.
+- Changed the guest account to not be a blank string.
+- Removed ability to run .CMD files, otherwise what would be the point of .birbapp files :(
+- You can delete your account if you want from birbTool.
+- New custom game files (.birbgame). Explore the code in [birbOS.cmd] to find out more...
+- Added birbOS Update using a cloud FTP server (DriveHQ)!

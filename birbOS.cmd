@@ -1,23 +1,37 @@
 @echo off
-@echo off
-set "osbuild=birbOS Build 7"
+:SYSTEMSTARTUP
+set "osbuild=birbOS Build 8.0.0"
 title %osbuild%
+timeout /t 2 /nobreak > nul
 :mainstage
 cls
 cd %~dp0
 if NOT exist .\BIRBLDR.DLL (echo BIRBLDR.DLL is missing. && echo Press any key to restart && pause > nul && start .\BOOTLOADER.CMD && exit)
 echo birbOS is booting.....
-timeout /t 1 /nobreak > nul
+timeout /t 3 /nobreak > nul
+echo birbOS successfully booted.
 :prompt
-echo birbOS succesfully booted.
-:logscreen
-set /p user=Username: 
-if "%user%"=="" goto logon
-if NOT EXIST users\%user% goto incor
-if not exist users\%user%\.birbuser goto logon 
-set /p pword=Password: 
+echo Logon to birbOS. (Type "Guest" for guest account, and type "shutdown" to shutdown.)
+set user=
+set passw=
+set pword=
+if EXIST .\apps\temp\birbuser.tmp del /q .\apps\temp\birbuser.tmp
+cd users
+echo.
+echo List of available users:
+dir /b
+echo Guest
+cd ..
+echo.
+set /p "user=Username:" 
+if "%user%"=="" goto incor
+if "%user%"=="Guest" goto logon
+if "%user%"=="shutdown" goto shutdown
+if NOT EXIST users\%user%\ goto incor
+if NOT exist users\%user%\.birbuser goto logon
 set /p passw=<users\%user%\.birbuser
-if %passw%==%pword% goto logon
+set /p "pword=Password:"
+if "%passw%"=="%pword%" goto logon
 goto incor
 :logon
 echo Login successful.
@@ -41,51 +55,56 @@ timeout /t 1 /nobreak > nul
 color 0F
 echo Welcome, %user%!
 timeout /t 1 /nobreak > nul
+echo %user% > .\apps\temp\birbuser.tmp
 echo Enter command:
 
 :prompt2
-
+cd %0\..\
 set "input="
 set /p input="%user%@birbOS ~:"
 if "%input%"=="owo" (echo uwu && goto prompt2)
+if "%input%"=="uwu" (echo owo && goto prompt2)
 if "%input%"=="birb" (echo BIIIIIIRB && goto prompt2)
 if "%input%"=="calculate" (goto :calculating)
-if "%input%"=="reboot" (echo Rebooting! && timeout 2 /nobreak > nul && start .\BOOTLOADER.CMD && exit)
+if "%input%"=="reboot" (echo Rebooting! && timeout /t 3 /nobreak > nul && start .\birbtool.CMD && exit)
+if "%input%"=="reboot /os" (echo Rebooting birbOS. && timeout /t 3 /nobreak > nul && cls && color 07 && goto :SYSTEMSTARTUP)
 if "%input%"=="shutdown" (timeout 2 /nobreak > nul && goto shutdown)
-if "%input%"=="help" (echo Commands are: help, owo, birb, calculate, reboot, shutdown, grab-sourcecode, stfu, guess-game, clear, changelog, about, logoff, runapp, writedoc, readdoc, folder, clean. && goto :prompt2 )
+if "%input%"=="help" (echo Commands are: help, owo, uwu, birb, calculate, reboot [/os], shutdown [/f], stfu, guess-game, clear, changelog, about, logoff, runapp, writedoc, readdoc, folder, clean, download-update, install-update. && goto :prompt2 )
 if "%input%"=="stfu" (echo no u && goto :prompt2)
 if "%input%"=="guess-game" (echo Starting! && goto :gueeees)
 if "%input%"=="clear" (cls && goto :prompt2)
 if "%input%"=="about" (echo %osbuild% - Developed by xandrei, Dukemz and Ad2017. && goto :prompt2)
 if "%input%"=="" (goto :prompt2)
 if "%input%"=="changelog" (cls && type .\changelog.txt && echo. && goto :prompt2)
-if EXIST "%input%.cmd" goto verif
 if "%input%"=="logoff" goto logoff
 if "%input%"=="folder" goto folder
 if "%input%"=="writedoc" goto write
 if "%input%"=="readdoc" goto read
 if "%input%"=="runapp" goto runapp
-if "%input%"=="resetpass" goto resetpass
 if "%input%"=="clean" goto clean
-
-
+if "%input%"=="shutdown /f" exit
+if "%input%"=="download-update" goto update
+if "%input%"=="install-update" goto upgrade
+if EXIST apps\games\%input%\%input%.birbgame goto :launchgame
 goto :shutdownerr
 
 :incor
 cls
-color 04
+color cf
 title U BWOKE A EULE
 echo Incorrect credentials.
 echo Press any key to try again.
 pause > nul
 color 07
 title %osbuild%
+cls
 goto prompt
 
 :shutdown
 cls
 echo birbOS is shutting down...
 timeout /t 3 /nobreak > nul
+if EXIST .\apps\temp\birbuser.tmp del /q .\apps\temp\birbuser.tmp
 exit
 
 
@@ -101,14 +120,14 @@ echo %answer%
 goto prompt2
 
 :shutdownerr
-echo Command not implemented! If you wanted to run a file, be sure its .CMD and you put the name correctly!
+echo Command not implemented!
 goto prompt2
 
 :gueeees
 title Guessing Game
 echo Wait while we generate your secret number.
 :qset
-set "varr=%random%"
+set "varr"="%random%"
 if %varr% GTR 30000 goto qset
 if %varr% LSS 10000 goto qset 
 :game
@@ -140,7 +159,7 @@ goto game2
 
 :verif
 if NOT "%user%"=="" start %input%.cmd && goto prompt2
-if "%user%"=="" echo Sorry. As a guest you can't run files thru BirbOS. && goto prompt2
+if "%user%"=="Guest" (echo Sorry. As a guest you can't run files through BirbOS. && goto prompt2)
 echo Unexpected Error
 pause
 exit
@@ -157,14 +176,15 @@ cls
 echo Logging off...
 cls
 timeout /t 3 /nobreak > nul
-goto logscreen
+color 07
+goto prompt
 echo Unexpected Error.
 pause
-exit
+goto prompt2
 
 :folder
-if "%user%"=="" echo Guests can't create folders. && goto prompt2
-set /p fname="Enter folder name: "
+if "%user%"=="Guest" echo Sorry, guests can't create folders. && goto prompt2
+set /p "fname2=Enter folder name: "
 cd users\%user%
 md %fname%
 cd..
@@ -172,10 +192,11 @@ cd..
 goto prompt2
 
 :write
-if "%user%"=="" echo Guests can't create documents. && goto prompt2
+if "%user%"=="Guest" echo Guests can't create documents. && goto prompt2
 cd users\%user%
-set /p docName="Enter document name : "
-set /p private="Make file private? (Y/N) : "
+set /p 
+set /p "docName"="Enter document name : "
+set /p "private"="Make file private? (Y/N) : "
 echo.> %docName%.txt
 echo nul>>privatedocs.binfo
 if %private%==Y echo %docName%.txt>>privatedocs.binfo
@@ -189,13 +210,13 @@ set textLine=
 goto type
 
 :read
-if "%user%"=="" echo Guests can't read files && goto prompt2
-set /p userread="Which user's doc. you want to read? : "
+if "%user%"=="Guest" echo Guests can't read files. && goto prompt2
+set /p userread="Which user's document you want to read? : "
 if NOT EXIST users\%userread% echo User not found! goto prompt2
 set /p docread="What document do you want to read? (no .txt) : "
 if NOT EXIST users\%userread% echo Document not found! goto prompt2
 findstr "%docread%.txt" users\%userread%\privatedocs.binfo > nul
-if %ERRORLEVEL%==0 if NOT "%userread%"=="%user%" echo Sorry. This file is private. && goto prompt2
+if %ERRORLEVEL%==0 if NOT "%userread%"=="%user%" (echo Sorry. This file is private. && goto prompt2)
 echo Reading users\%userread%\%docread%.txt :
 echo.
 echo.
@@ -211,10 +232,10 @@ pause > nul
 goto prompt2
 
 :runapp
-if "%user%"=="" echo Guests can't run apps && goto prompt2
+if "%user%"=="Guest" echo Guests can't run apps. && goto prompt2
 set /p appti="Enter app name (without .birbapp) : "
 cd apps
-if NOT EXIST %appti%.birbapp echo App not found && goto prompt2
+if NOT EXIST %appti%.birbapp (echo App not found. && cd .. && goto prompt2)
 copy %appti%.birbapp temp
 set temp=%random%
 rename temp\%appti%.birbapp temp_app%temp%.bat
@@ -226,14 +247,35 @@ goto prompt2
 
 :clean
 cd apps\temp
-for /f %%i in (*) do del %%i
+for %%i in (*) do del %%i
+echo %user% > birbuser.tmp
 echo Cleaned!
 cd..
 cd..
-
-
-
 goto prompt2
 
+:update
+if "%user%"=="Guest" (echo Sorry, the Guest account cannot use the update system. && goto prompt2)
+cls
+echo Connecting to the BirbOS server on DriveHQ...
+timeout /t 3 /nobreak > nul
+cd update_files
+echo When the prompt appears, logon with the username "BirbOSDevs" and use the password "BirbOS6767".
+echo To get details on latest version info/installation instructions, type "get update_ver.txt".
+echo This file will be located in "update_files" after downloading.
+echo If a new version is available, type "get install-update.cmd" at the FTP prompt.
+echo Return to here and download any files needed, then return to the BirbOS Prompt and type "install-update" to install.
+echo Quit the FTP prompt at any time by typing "quit".
+pause
+echo.
+ftp ftp.drivehq.com
+echo FTP connection closed.
+goto prompt2
 
-
+:upgrade
+if "%user%"=="Guest" (echo Sorry, the Guest account cannot use the update system. && goto prompt2)
+if NOT exist update_files\install_update.cmd (echo You have not downloaded "install_update.cmd" yet! Please download it! && goto prompt2)
+echo Preparing to install updates. BirbOS will shutdown during this process.
+timeout /t 5 /nobreak > nul
+start update_files\install-update.cmd
+exit
