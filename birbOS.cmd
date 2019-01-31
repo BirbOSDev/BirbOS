@@ -1,6 +1,6 @@
 @echo off
 :SYSTEMSTARTUP
-set "osbuild=birbOS Build 8.0.0"
+set "osbuild=birbOS Build 8.1.0"
 title %osbuild%
 timeout /t 2 /nobreak > nul
 :mainstage
@@ -11,6 +11,8 @@ echo birbOS is booting.....
 timeout /t 3 /nobreak > nul
 echo birbOS successfully booted.
 :prompt
+set col=
+set bcol=
 echo Logon to birbOS. (Type "Guest" for guest account, and type "shutdown" to shutdown.)
 set user=
 set passw=
@@ -60,6 +62,8 @@ echo Enter command:
 
 :prompt2
 cd %0\..\
+color %setthm%
+set setthm=
 set "input="
 set /p input="%user%@birbOS ~:"
 if "%input%"=="owo" (echo uwu && goto prompt2)
@@ -69,7 +73,7 @@ if "%input%"=="calculate" (goto :calculating)
 if "%input%"=="reboot" (echo Rebooting! && timeout /t 3 /nobreak > nul && start .\birbtool.CMD && exit)
 if "%input%"=="reboot /os" (echo Rebooting birbOS. && timeout /t 3 /nobreak > nul && cls && color 07 && goto :SYSTEMSTARTUP)
 if "%input%"=="shutdown" (timeout 2 /nobreak > nul && goto shutdown)
-if "%input%"=="help" (echo Commands are: help, owo, uwu, birb, calculate, reboot [/os], shutdown [/f], stfu, guess-game, clear, changelog, about, logoff, runapp, writedoc, readdoc, folder, clean, download-update, install-update. && goto :prompt2 )
+if "%input%"=="help" (echo Commands are: help, owo, uwu, birb, calculate, reboot [/os], shutdown [/f], stfu, guess-game, clear, changelog, about, logoff, runapp, writedoc, readdoc, folder, clean, download-update, install-update, set-theme. && goto :prompt2 )
 if "%input%"=="stfu" (echo no u && goto :prompt2)
 if "%input%"=="guess-game" (echo Starting! && goto :gueeees)
 if "%input%"=="clear" (cls && goto :prompt2)
@@ -84,7 +88,7 @@ if "%input%"=="runapp" goto runapp
 if "%input%"=="clean" goto clean
 if "%input%"=="shutdown /f" exit
 if "%input%"=="download-update" goto update
-if "%input%"=="install-update" goto upgrade
+if "%input%"=="set-theme" goto theme
 if EXIST apps\games\%input%\%input%.birbgame goto :launchgame
 goto :shutdownerr
 
@@ -259,23 +263,103 @@ if "%user%"=="Guest" (echo Sorry, the Guest account cannot use the update system
 cls
 echo Connecting to the BirbOS server on DriveHQ...
 timeout /t 3 /nobreak > nul
-cd update_files
 echo When the prompt appears, logon with the username "BirbOSDevs" and use the password "BirbOS6767".
-echo To get details on latest version info/installation instructions, type "get update_ver.txt".
-echo This file will be located in "update_files" after downloading.
-echo If a new version is available, type "get install-update.cmd" at the FTP prompt.
-echo Return to here and download any files needed, then return to the BirbOS Prompt and type "install-update" to install.
+echo Download latest version using "get birbos.zip"
+echo Come here and download any files needed. They will save as .zip in upload_files.
 echo Quit the FTP prompt at any time by typing "quit".
 pause
 echo.
+cd upload_files
 ftp ftp.drivehq.com
 echo FTP connection closed.
 goto prompt2
 
-:upgrade
-if "%user%"=="Guest" (echo Sorry, the Guest account cannot use the update system. && goto prompt2)
-if NOT exist update_files\install_update.cmd (echo You have not downloaded "install_update.cmd" yet! Please download it! && goto prompt2)
-echo Preparing to install updates. BirbOS will shutdown during this process.
-timeout /t 5 /nobreak > nul
-start update_files\install-update.cmd
-exit
+
+:theme
+echo Themes : 'dark', 'light-dark', 'light', 'hacker', 'error', 'bsod'.
+echo For custom themes, use 'custom'.
+echo.
+set /p theme="Theme : "
+if "%theme%"=="dark" (
+echo f>theme.txt
+set /p setthm=<theme.txt
+color %setthm%
+echo.
+goto prompt2
+)
+if "%theme%"=="light-dark" (
+echo 8f>theme.txt
+set /p setthm=<theme.txt
+color %setthm%
+goto prompt2
+)
+if "%theme%"=="light" (
+echo f0>theme.txt
+set /p setthm=<theme.txt
+color %setthm%
+goto prompt2
+)
+if "%theme%"=="hacker" (
+echo a>theme.txt
+set /p setthm=<theme.txt
+color %setthm%
+goto prompt2
+)
+if "%theme%"=="error" (
+echo c>theme.txt
+set /p setthm=<theme.txt
+color %setthm%
+goto prompt2
+)
+if "%theme%"=="bsod" (
+echo 1f>theme.txt
+set /p setthm=<theme.txt
+color %setthm%
+goto prompt2
+)
+if "%theme%"=="custom" (
+goto customthm
+)
+echo.
+echo Unknown theme.
+echo.
+goto theme
+
+:customthm
+echo Colors :
+echo 0 - black
+echo 1 - blue
+echo 2 - green
+echo 3 - aqua
+echo 4 - red
+echo 5 - purple
+echo 6 - yellow
+echo 7 - light gray
+echo 8 - gray
+echo f - white
+echo.
+set /p tcl="Text color : "
+if "%tcl%"=="a" echo Not a color. && goto prompt2
+if "%tcl%"=="A" echo Not a color. && goto prompt2
+if "%tcl%"=="B" echo Not a color. && goto prompt2
+if "%tcl%"=="b" echo Not a color. && goto prompt2
+if "%tcl%"=="C" echo Not a color. && goto prompt2
+if "%tcl%"=="c" echo Not a color. && goto prompt2
+if "%tcl%"=="D" echo Not a color. && goto prompt2
+if "%tcl%"=="d" echo Not a color. && goto prompt2
+if "%tcl%"=="E" echo Not a color. && goto prompt2
+if "%tcl%"=="e" echo Not a color. && goto prompt2
+set /p bgcl="BG color : "
+if "%bgcl%"=="a" echo Not a color. && goto prompt2
+if "%bgcl%"=="A" echo Not a color. && goto prompt2
+if "%bgcl%"=="B" echo Not a color. && goto prompt2
+if "%bgcl%"=="b" echo Not a color. && goto prompt2
+if "%bgcl%"=="C" echo Not a color. && goto prompt2
+if "%bgcl%"=="c" echo Not a color. && goto prompt2
+if "%bgcl%"=="D" echo Not a color. && goto prompt2
+if "%bgcl%"=="d" echo Not a color. && goto prompt2
+if "%bgcl%"=="E" echo Not a color. && goto prompt2
+if "%bgcl%"=="e" echo Not a color. && goto prompt2
+echo %bgcl%%tcl%>theme.txt
+set /p setthm=<theme.txt
+goto prompt2

@@ -24,7 +24,7 @@ Build 4:
 Build 5:
 - Colour resets after login fail.
 - Added guessing game.
-- Added "stfu" command. (Inspired by xandrei's bot)
+- Added "stfu" command. (Inspired by xandrei's bot, SockBot)
 - Added "cls" command. (clears the screen)
 - birbOS no longer crashes when you enter in more than one word as the input.
 
@@ -82,3 +82,6 @@ Build 8.0.0
 - You can delete your account if you want from birbTool.
 - New custom game files (.birbgame). Explore the code in [birbOS.cmd] to find out more...
 - Added birbOS Update using a cloud FTP server (DriveHQ)!
+
+Build 8.1
+- Added themes! Try the "set-theme" command!
