@@ -199,39 +199,32 @@ goto prompt2
 :write
 if "%user%"=="Guest" echo Guests can't create documents. && goto prompt2
 cd users\%user%
-set /p 
-set /p "docName"="Enter document name : "
-set /p "private"="Make file private? (Y/N) : "
-echo.> %docName%.txt
-echo nul>>privatedocs.binfo
-if %private%==Y echo %docName%.txt>>privatedocs.binfo
+set /p docName="Enter document name : "
+if exist %docName%.bdoc echo Document exists. && goto write
+set /p private="Make file private? (Y/N) : "
+echo.>%docName%.bdoc
+if %private%==Y echo %docName%.bdoc>>privatedocs.binfo
 echo Type "exit.." to exit. Press enter to add new line.
 cls
 :type
 set /p textLine="::"
 if "%textLine%"=="exit" cd.. && cd.. && goto prompt2
-echo.%textLine%>> %docName%.txt
+echo.%textLine%>>%docName%.doc
 set textLine=
 goto type
 
 :read
 if "%user%"=="Guest" echo Guests can't read files. && goto prompt2
 set /p userread="Which user's document you want to read? : "
-if NOT EXIST users\%userread% echo User not found! goto prompt2
-set /p docread="What document do you want to read? (no .txt) : "
-if NOT EXIST users\%userread% echo Document not found! goto prompt2
-findstr "%docread%.txt" users\%userread%\privatedocs.binfo > nul
+if NOT EXIST users\%userread% echo User not found! && goto prompt2
+set /p docread="What document do you want to read? (no .doc) : "
+if NOT EXIST users\%userread%\%docread%.bdoc echo Document not found! && goto prompt2
+findstr "%docread%.bdoc" users\%userread%\privatedocs.binfo > nul
 if %ERRORLEVEL%==0 if NOT "%userread%"=="%user%" (echo Sorry. This file is private. && goto prompt2)
-echo Reading users\%userread%\%docread%.txt :
+echo Reading users\%userread%\%docread%.bdoc :
 echo.
+type users\%userread%\%docread%.bdoc
 echo.
-echo.
-echo -----start of document
-type users\%userread%\%docread%.txt
-echo.
-echo.
-echo.
-echo -----end of document
 echo Press any key to exit reader.
 pause > nul
 goto prompt2
