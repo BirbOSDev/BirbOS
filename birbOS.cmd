@@ -4,6 +4,7 @@ set "osbuild=birbOS Build 8.1.0"
 title %osbuild%
 timeout /t 2 /nobreak > nul
 :mainstage
+set setthm=<theme.txt
 cls
 cd %~dp0
 if NOT exist .\BIRBLDR.DLL (echo BIRBLDR.DLL is missing. && echo Press any key to restart && pause > nul && start .\BOOTLOADER.CMD && exit)
@@ -62,8 +63,8 @@ echo Enter command:
 
 :prompt2
 cd %0\..\
+set /p setthm=<theme.birbtheme
 color %setthm%
-set setthm=
 set "input="
 set /p input="%user%@birbOS ~:"
 if "%input%"=="owo" (echo uwu && goto prompt2)
@@ -281,39 +282,39 @@ echo For custom themes, use 'custom'.
 echo.
 set /p theme="Theme : "
 if "%theme%"=="dark" (
-echo f>theme.txt
-set /p setthm=<theme.txt
+echo f>theme.birbtheme
+set /p setthm=<theme.birbtheme
 color %setthm%
 echo.
 goto prompt2
 )
 if "%theme%"=="light-dark" (
-echo 8f>theme.txt
-set /p setthm=<theme.txt
+echo 8f>theme.birbtheme
+set /p setthm=<theme.birbtheme
 color %setthm%
 goto prompt2
 )
 if "%theme%"=="light" (
-echo f0>theme.txt
-set /p setthm=<theme.txt
+echo f0>theme.birbtheme
+set /p setthm=<theme.birbtheme
 color %setthm%
 goto prompt2
 )
 if "%theme%"=="hacker" (
-echo a>theme.txt
-set /p setthm=<theme.txt
+echo a>theme.birbtheme
+set /p setthm=<theme.birbtheme
 color %setthm%
 goto prompt2
 )
 if "%theme%"=="error" (
-echo c>theme.txt
-set /p setthm=<theme.txt
+echo c>theme.birbtheme
+set /p setthm=<theme.birbtheme
 color %setthm%
 goto prompt2
 )
 if "%theme%"=="bsod" (
-echo 1f>theme.txt
-set /p setthm=<theme.txt
+echo 1f>theme.birbtheme
+set /p setthm=<theme.birbtheme
 color %setthm%
 goto prompt2
 )
@@ -360,6 +361,6 @@ if "%bgcl%"=="D" echo Not a color. && goto prompt2
 if "%bgcl%"=="d" echo Not a color. && goto prompt2
 if "%bgcl%"=="E" echo Not a color. && goto prompt2
 if "%bgcl%"=="e" echo Not a color. && goto prompt2
-echo %bgcl%%tcl%>theme.txt
-set /p setthm=<theme.txt
+echo %bgcl%%tcl%>theme.birbtheme
+set /p setthm=<theme.birbtheme
 goto prompt2
