@@ -1,6 +1,6 @@
 @echo off
 :SYSTEMSTARTUP
-set "osbuild=birbOS Build 8.1.0"
+set "osbuild=birbOS Build 8.1.1"
 title %osbuild%
 timeout /t 2 /nobreak > nul
 :mainstage
@@ -340,28 +340,31 @@ echo 7 - light gray
 echo 8 - gray
 echo f - white
 echo.
+:setcustomthm
 set /p tcl="Text color : "
-if "%tcl%"=="a" echo Not a color. && goto prompt2
-if "%tcl%"=="A" echo Not a color. && goto prompt2
-if "%tcl%"=="B" echo Not a color. && goto prompt2
-if "%tcl%"=="b" echo Not a color. && goto prompt2
-if "%tcl%"=="C" echo Not a color. && goto prompt2
-if "%tcl%"=="c" echo Not a color. && goto prompt2
-if "%tcl%"=="D" echo Not a color. && goto prompt2
-if "%tcl%"=="d" echo Not a color. && goto prompt2
-if "%tcl%"=="E" echo Not a color. && goto prompt2
-if "%tcl%"=="e" echo Not a color. && goto prompt2
+if "%tcl%"=="a" echo Not a color. && goto setcustomthm
+if "%tcl%"=="A" echo Not a color. && goto setcustomthm
+if "%tcl%"=="B" echo Not a color. && goto setcustomthm
+if "%tcl%"=="b" echo Not a color. && goto setcustomthm
+if "%tcl%"=="C" echo Not a color. && goto setcustomthm
+if "%tcl%"=="c" echo Not a color. && goto setcustomthm
+if "%tcl%"=="D" echo Not a color. && goto setcustomthm
+if "%tcl%"=="d" echo Not a color. && goto setcustomthm
+if "%tcl%"=="E" echo Not a color. && goto setcustomthm
+if "%tcl%"=="e" echo Not a color. && goto setcustomthm
+for %%i in (1 2 3 4 5 6 7 8 f) do if not %tcl%==%%i echo Not a color. && goto setcustomthm
 set /p bgcl="BG color : "
-if "%bgcl%"=="a" echo Not a color. && goto prompt2
-if "%bgcl%"=="A" echo Not a color. && goto prompt2
-if "%bgcl%"=="B" echo Not a color. && goto prompt2
-if "%bgcl%"=="b" echo Not a color. && goto prompt2
-if "%bgcl%"=="C" echo Not a color. && goto prompt2
-if "%bgcl%"=="c" echo Not a color. && goto prompt2
-if "%bgcl%"=="D" echo Not a color. && goto prompt2
-if "%bgcl%"=="d" echo Not a color. && goto prompt2
-if "%bgcl%"=="E" echo Not a color. && goto prompt2
-if "%bgcl%"=="e" echo Not a color. && goto prompt2
+if "%bgcl%"=="a" echo Not a color. && goto setcustomthm
+if "%bgcl%"=="A" echo Not a color. && goto setcustomthm
+if "%bgcl%"=="B" echo Not a color. && goto setcustomthm
+if "%bgcl%"=="b" echo Not a color. && goto setcustomthm
+if "%bgcl%"=="C" echo Not a color. && goto setcustomthm
+if "%bgcl%"=="c" echo Not a color. && goto setcustomthm
+if "%bgcl%"=="D" echo Not a color. && goto setcustomthm
+if "%bgcl%"=="d" echo Not a color. && goto setcustomthm
+if "%bgcl%"=="E" echo Not a color. && goto setcustomthm
+if "%bgcl%"=="e" echo Not a color. && goto setcustomthm
+for %%i in (1 2 3 4 5 6 7 8 f) do if not %bgcl%==%%i echo Not a color. && goto setcustomthm
 echo %bgcl%%tcl%>theme.birbtheme
 set /p setthm=<theme.birbtheme
 goto prompt2

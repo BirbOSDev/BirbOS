@@ -85,3 +85,7 @@ Build 8.0.0
 
 Build 8.1
 - Added themes! Try the "set-theme" command!
+
+Build 8.1.1
+- Tweaked some stuff...
+- Fixed set-theme bug. (could input anything that isnt a color and that would crash birbOS)
