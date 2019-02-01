@@ -277,6 +277,7 @@ goto prompt2
 
 
 :theme
+if %user%=="Guest" echo Sorry, Guests can't set themes. && goto prompt2
 echo Themes : 'dark', 'light-dark', 'light', 'hacker', 'error', 'bsod'.
 echo For custom themes, use 'custom'.
 echo.
