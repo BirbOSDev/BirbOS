@@ -1,13 +1,13 @@
 @echo off
 :SYSTEMSTARTUP
-set "osbuild=birbOS Build 8.1.1"
+set "osbuild=birbOS Build 8.2"
 title %osbuild%
 timeout /t 2 /nobreak > nul
 :mainstage
 set setthm=<theme.txt
 cls
 cd %~dp0
-if NOT exist .\BIRBLDR.DLL (echo BIRBLDR.DLL is missing. && echo Press any key to restart && pause > nul && start .\BOOTLOADER.CMD && exit)
+if NOT exist .\BOOT.FIRM (echo BOOTROM FAILED && ECHO ERRCODE: 000FFF01 00000000 00000011 && echo PRESS ANY KEY TO SHUTDOWN && pause > nul && exit)
 echo birbOS is booting.....
 timeout /t 3 /nobreak > nul
 echo birbOS successfully booted.
