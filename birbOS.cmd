@@ -14,7 +14,7 @@ echo birbOS successfully booted.
 :prompt
 set col=
 set bcol=
-echo Logon to birbOS. (Type "Guest" for guest account, and type "shutdown" to shutdown.)
+echo Login to birbOS. (Type "Guest" for guest account, and type "shutdown" to shutdown.)
 set user=
 set passw=
 set pword=
@@ -29,6 +29,7 @@ echo.
 set /p "user=Username:" 
 if "%user%"=="" goto incor
 if "%user%"=="Guest" goto logon
+if "%user%"=="guest" goto logon
 if "%user%"=="shutdown" goto shutdown
 if NOT EXIST users\%user%\ goto incor
 if NOT exist users\%user%\.birbuser goto logon
@@ -71,10 +72,10 @@ if "%input%"=="owo" (echo uwu && goto prompt2)
 if "%input%"=="uwu" (echo owo && goto prompt2)
 if "%input%"=="birb" (echo BIIIIIIRB && goto prompt2)
 if "%input%"=="calculate" (goto :calculating)
-if "%input%"=="reboot" (echo Rebooting! && timeout /t 3 /nobreak > nul && start .\birbtool.CMD && exit)
-if "%input%"=="reboot /os" (echo Rebooting birbOS. && timeout /t 3 /nobreak > nul && cls && color 07 && goto :SYSTEMSTARTUP)
+if "%input%"=="reboot /rec" (echo Rebooting! && timeout /t 3 /nobreak > nul && start .\birbtool.CMD && exit)
+if "%input%"=="reboot" (echo Rebooting birbOS. && timeout /t 3 /nobreak > nul && cls && color 07 && goto :SYSTEMSTARTUP)
 if "%input%"=="shutdown" (timeout 2 /nobreak > nul && goto shutdown)
-if "%input%"=="help" (echo Commands are: help, owo, uwu, birb, calculate, reboot [/os], shutdown [/f], stfu, guess-game, clear, changelog, about, logoff, runapp, writedoc, readdoc, folder, clean, download-update, install-update, set-theme. && goto :prompt2 )
+if "%input%"=="help" (echo Commands are: help, owo, uwu, birb, calculate, reboot [/rec], shutdown [/f], stfu, guess-game, clear, changelog, about, logoff, runapp, writedoc, readdoc, folder, clean, download-update, install-update, set-theme. && goto :prompt2 )
 if "%input%"=="stfu" (echo no u && goto :prompt2)
 if "%input%"=="guess-game" (echo Starting! && goto :gueeees)
 if "%input%"=="clear" (cls && goto :prompt2)
@@ -267,7 +268,7 @@ cd upload_files
 ftp ftp.drivehq.com
 echo FTP connection closed.
 goto prompt2
-
+rem easter egg
 
 :theme
 if "%user%"=="Guest" echo Sorry, Guests can't set themes. && goto prompt2
@@ -361,3 +362,7 @@ for %%i in (1 2 3 4 5 6 7 8 f) do if not %bgcl%==%%i echo Not a color. && goto s
 echo %bgcl%%tcl%>theme.birbtheme
 set /p setthm=<theme.birbtheme
 goto prompt2
+
+
+
+
