@@ -1,0 +1,22 @@
+{
+  "name": "birbos",
+  "version": "1.0.0",
+  "description": "Very cool and epic funny os!!!!!!! Great os!!!!! Java Script Edition!!!!!!!!!!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1024x2/BirbOS.git"
+  },
+  "author": "ur mum lol",
+  "license": "gay",
+  "bugs": {
+    "url": "https://github.com/1024x2/BirbOS/issues"
+  },
+  "homepage": "https://github.com/1024x2/BirbOS#readme",
+  "dependencies": {
+    "fs-extra": "^7.0.1"
+  }
+}
