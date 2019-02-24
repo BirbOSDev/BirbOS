@@ -7,7 +7,7 @@ timeout /t 2 /nobreak > nul
 set setthm=<theme.txt
 cls
 cd %~dp0
-if NOT exist .\BOOT.FIRM (echo BOOTROM FAILED && ECHO ERRCODE: 000FFF01 00000000 00000011 && echo PRESS ANY KEY TO SHUTDOWN && pause > nul && exit)
+if NOT exist .\BOOT.BLDR (cls && color 1f && echo BOOTROM FAILED && ECHO ERRCODE: 000FFF01 00000000 00000011 && echo PRESS ANY KEY TO SHUTDOWN && pause > nul && exit)
 echo birbOS is booting.....
 timeout /t 3 /nobreak > nul
 echo birbOS successfully booted.

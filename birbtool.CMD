@@ -2,7 +2,7 @@
 :: birb bootloader v1.3
 :: github webhook test
 cls
-title BirbTool (recovery for birbOS)
+title BirbTool
 timeout 3 /nobreak > nul
 echo Detecting PCI-E devices.....
 timeout 2 /nobreak > nul
@@ -31,6 +31,7 @@ if "%ldr%"=="dsktool" (echo Launching dsktool.... && timeout /t 3 /nobreak > nul
 if "%ldr%"=="changepass" (echo Please wait... && timeout /t 3 /nobreak > nul && goto resetpass)
 if "%ldr%"=="deluser" (echo Please wait... && timeout /t 3 /nobreak > nul && goto :deluser)
 if "%ldr%"=="checkver" (echo Latest version of BirbOS is 8.2 && goto ldr)
+if "%ldr%"=="about (goto about)
 if "%ldr%"=="" goto :ldr
 
 echo Invalid choice.
@@ -125,8 +126,14 @@ if NOT EXIST sys_apps\bsod.birbapp echo bsod.birbapp not found! Please re-instal
 if NOT EXIST apps echo "apps" folder not found! Please re-install birbOS or create it, and inside it create a folder called "temp"!
 if NOT EXIST apps\temp echo "temp" folder not found! Please re-install birbOS or create it inside the "apps" folder!
 if NOT EXIST CD-ROM.CMD echo CD-ROM.CMD not found! It's not a must but it is recomended to have it installed!
-if NOT EXIST BOOT.FIRM echo BOOT.FIRM not found! Please re-install it to boot up birbOS!
+if NOT EXIST BOOT.BLDR echo BOOT.BLDR not found! Please re-install it to boot up birbOS!
 echo.
 echo Please replace any missing files or folders!
 echo If no errors appeared above you're fine!
+goto ldr
+
+:about
+echo About birbTool:
+echo Made by xAndrei166
+echo Improved by Ad2017 and Dukemz
 goto ldr
