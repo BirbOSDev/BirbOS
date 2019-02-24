@@ -75,7 +75,7 @@ if "%input%"=="calculate" (goto :calculating)
 if "%input%"=="reboot /rec" (echo Rebooting! && timeout /t 3 /nobreak > nul && start .\birbtool.CMD && exit)
 if "%input%"=="reboot" (echo Rebooting birbOS. && timeout /t 3 /nobreak > nul && cls && color 07 && goto :SYSTEMSTARTUP)
 if "%input%"=="shutdown" (timeout 2 /nobreak > nul && goto shutdown)
-if "%input%"=="help" (echo Commands are: help, owo, uwu, birb, calculate, reboot [/rec], shutdown [/f], stfu, guess-game, clear, changelog, about, logoff, runapp, writedoc, readdoc, folder, clean, download-update, install-update, set-theme. && goto :prompt2 )
+if "%input%"=="help" (echo Commands are: help, owo, uwu, birb, calculate, reboot [/rec], shutdown [/f], stfu, guess-game, clear, changelog, about, logoff, runapp, writedoc, readdoc, folder, clean, download-update, set-theme. && goto :prompt2 )
 if "%input%"=="stfu" (echo no u && goto :prompt2)
 if "%input%"=="guess-game" (echo Starting! && goto :gueeees)
 if "%input%"=="clear" (cls && goto :prompt2)
@@ -89,7 +89,7 @@ if "%input%"=="readdoc" goto read
 if "%input%"=="runapp" goto runapp
 if "%input%"=="clean" goto clean
 if "%input%"=="shutdown /f" exit
-if "%input%"=="download-update" goto update
+if "%input%"=="download-update" (echo Sorry! You can no longer update BirbOS online! Download the newest version from github! && goto prompt2)
 if "%input%"=="set-theme" goto theme
 if EXIST apps\games\%input%\%input%.birbgame goto :launchgame
 goto :shutdownerr
@@ -253,22 +253,6 @@ cd..
 cd..
 goto prompt2
 
-:update
-if "%user%"=="Guest" (echo Sorry, the Guest account cannot use the update system. && goto prompt2)
-cls
-echo Connecting to the BirbOS server on DriveHQ...
-timeout /t 3 /nobreak > nul
-echo When the prompt appears, logon with the username "BirbOSDevs" and use the password "BirbOS6767".
-echo Download latest version using "get birbos.zip"
-echo Come here and download any files needed. They will save as .zip in upload_files.
-echo Quit the FTP prompt at any time by typing "quit".
-pause
-echo.
-cd upload_files
-ftp ftp.drivehq.com
-echo FTP connection closed.
-goto prompt2
-rem easter egg
 
 :theme
 if "%user%"=="Guest" echo Sorry, Guests can't set themes. && goto prompt2
