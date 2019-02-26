@@ -89,3 +89,6 @@ Build 8.1
 Build 8.1.1
 - Tweaked some stuff...
 - Fixed set-theme bug. (could input anything that isnt a color and that would crash birbOS)
+
+Build 8.2.X
+- Removed the DriveHQ stuff. People are just misusing it, so... nah.
