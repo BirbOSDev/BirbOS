@@ -31,7 +31,7 @@ if "%ldr%"=="dsktool" (echo Launching dsktool.... && timeout /t 3 /nobreak > nul
 if "%ldr%"=="changepass" (echo Please wait... && timeout /t 3 /nobreak > nul && goto resetpass)
 if "%ldr%"=="deluser" (echo Please wait... && timeout /t 3 /nobreak > nul && goto :deluser)
 if "%ldr%"=="checkver" (echo Latest version of BirbOS is 8.3.1 && goto ldr)
-if "%ldr%"=="about (goto about)
+if "%ldr%"=="about" (goto about)
 if "%ldr%"=="" goto :ldr
 
 echo Invalid choice.
