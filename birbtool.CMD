@@ -6,12 +6,11 @@ title BirbTool
 timeout 3 /nobreak > nul
 echo Detecting PCI-E devices.....
 timeout 2 /nobreak > nul
-echo birbTool v1.3
+echo birbTool v1.3-1
 :brbldr
 echo Boot options:
 echo Use "shutdown" to shutdown birbTool.
 echo Use "launch" to launch default BirbOS mode.
-echo Use "CDR" to launch the CD-ROM file (.\CD-ROM.CMD).
 echo Use "usrtool" to start up the UserTool.
 echo Use "dsktool" to check the birbOS installation.
 echo Use "changepass" to change the password for your account.
@@ -21,11 +20,9 @@ echo See the BirbOS System version by using "checkver".
 title BirbTool
 cd %0\..\
 set ldr=
-set/p "ldr=BirbTool>"
+set/p "ldr=>"
 if "%ldr%"=="shutdown" (cls && echo Shutting down the system, please wait... && timeout /t 5 /nobreak > nul && exit)
 if "%ldr%"=="launch" (echo Booting from {3f79bb7-b435b05321-651daefd3}... && timeout /t 2 /nobreak > nul && start birbOS.cmd && exit)
-if "%ldr%"=="cdr" (echo Booting from CD-ROM... && timeout /t 2 /nobreak > nul && start .\CD-ROM.CMD && exit)
-if "%ldr%"=="CDR" (echo Booting from CD-ROM... && timeout /t 2 /nobreak > nul && start .\CD-ROM.CMD && exit)
 if "%ldr%"=="usrtool" (echo Launching UserTool.... && timeout /t 3 /nobreak > nul && goto :start)
 if "%ldr%"=="dsktool" (echo Launching dsktool.... && timeout /t 3 /nobreak > nul && goto check)
 if "%ldr%"=="changepass" (echo Please wait... && timeout /t 3 /nobreak > nul && goto resetpass)
@@ -125,7 +122,6 @@ if NOT EXIST sys_apps echo "sys_apps" folder and its apps not found! Please re-i
 if NOT EXIST sys_apps\bsod.birbapp echo bsod.birbapp not found! Please re-install birbOS!
 if NOT EXIST apps echo "apps" folder not found! Please re-install birbOS or create it, and inside it create a folder called "temp"!
 if NOT EXIST apps\temp echo "temp" folder not found! Please re-install birbOS or create it inside the "apps" folder!
-if NOT EXIST CD-ROM.CMD echo CD-ROM.CMD not found! It's not a must but it is recomended to have it installed!
 if NOT EXIST BOOT.BLDR echo BOOT.BLDR not found! Please re-install it to boot up birbOS!
 echo.
 echo Please replace any missing files or folders!
