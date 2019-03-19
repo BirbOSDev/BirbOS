@@ -24,7 +24,7 @@ Build 4:
 Build 5:
 - Colour resets after login fail.
 - Added guessing game.
-- Added "stfu" command. (Inspired by xandrei's bot, SockBot)
+- Added "stfu" command. (Inspired by xandrei's bot)
 - Added "cls" command. (clears the screen)
 - birbOS no longer crashes when you enter in more than one word as the input.
 
