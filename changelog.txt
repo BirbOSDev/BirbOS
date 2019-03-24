@@ -92,3 +92,6 @@ Build 8.1.1
 
 Build 8.2.X
 - Removed the DriveHQ stuff. People are just misusing it, so... nah.
+
+Buld 8.3-1
+- Added first-time setup. Users will now require to run birbTool whenever they get a new update or download it for the first time.
