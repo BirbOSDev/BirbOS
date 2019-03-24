@@ -5,8 +5,9 @@ cls
 title BirbTool
 timeout 3 /nobreak > nul
 echo Detecting PCI-E devices.....
+if not exist .\fsetup.e goto fsetup
 timeout 2 /nobreak > nul
-echo birbTool v1.3-1
+echo birbTool v1.4
 :brbldr
 echo Boot options:
 echo Use "shutdown" to shutdown birbTool.
@@ -34,7 +35,7 @@ if "%ldr%"=="" goto :ldr
 echo Invalid choice.
 goto :ldr
 
-:start
+:usrtoool
 cd users
 echo birbOS UserTool
 set /p "u=Enter username: "
@@ -133,3 +134,13 @@ echo About birbTool:
 echo Made by xAndrei166
 echo Improved by Ad2017 and Dukemz
 goto ldr
+
+:fsetup
+timeout 4 /nobreak > nul
+echo Completing first time setup...
+timeout 1 /nobreak > nul
+echo first > fsetup.e
+echo done.
+echo press any key to continue to user creation.
+pause > nul
+goto usrtoool

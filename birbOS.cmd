@@ -1,6 +1,6 @@
 @echo off
 :SYSTEMSTARTUP
-set "osbuild=birbOS Build 8.2"
+set "osbuild=birbOS Build 8.3-1"
 title %osbuild%
 timeout /t 2 /nobreak > nul
 :mainstage
@@ -9,6 +9,7 @@ cls
 cd %~dp0
 if NOT exist .\BOOT.BLDR (cls && color 1f && echo BOOTROM FAILED && ECHO ERRCODE: 000FFF01 00000000 00000011 && echo PRESS ANY KEY TO SHUTDOWN && pause > nul && exit)
 echo birbOS is booting.....
+if not exist .\fsetup.e (goto firstset)
 timeout /t 3 /nobreak > nul
 echo birbOS successfully booted.
 :prompt
@@ -75,7 +76,7 @@ if "%input%"=="calculate" (goto :calculating)
 if "%input%"=="reboot /rec" (echo Rebooting! && timeout /t 3 /nobreak > nul && start .\birbtool.CMD && exit)
 if "%input%"=="reboot" (echo Rebooting birbOS. && timeout /t 3 /nobreak > nul && cls && color 07 && goto :SYSTEMSTARTUP)
 if "%input%"=="shutdown" (timeout 2 /nobreak > nul && goto shutdown)
-if "%input%"=="help" (echo Commands are: help, owo, uwu, birb, calculate, reboot [/rec], shutdown [/f], stfu, guess-game, clear, changelog, about, logoff, runapp, writedoc, readdoc, folder, clean, download-update, set-theme. && goto :prompt2 )
+if "%input%"=="help" (echo Commands are: help, owo, uwu, birb, calculate, reboot [/rec], shutdown [/f], stfu, guess-game, clear, changelog, about, logoff, runapp, writedoc, readdoc, folder, clean and set-theme. && goto :prompt2 )
 if "%input%"=="stfu" (echo no u && goto :prompt2)
 if "%input%"=="guess-game" (echo Starting! && goto :gueeees)
 if "%input%"=="clear" (cls && goto :prompt2)
@@ -89,7 +90,6 @@ if "%input%"=="readdoc" goto read
 if "%input%"=="runapp" goto runapp
 if "%input%"=="clean" goto clean
 if "%input%"=="shutdown /f" exit
-if "%input%"=="download-update" (echo Sorry! You can no longer update BirbOS online! Download the newest version from github! && goto prompt2)
 if "%input%"=="set-theme" goto theme
 if EXIST apps\games\%input%\%input%.birbgame goto :launchgame
 goto :shutdownerr
@@ -347,6 +347,12 @@ echo %bgcl%%tcl%>theme.birbtheme
 set /p setthm=<theme.birbtheme
 goto prompt2
 
+:firstset
+echo This is the first time birbOS is loaded.
+echo Open birbTool to complete the first setup.
+echo Press any key to shutdown
+pause > nul
+exit
 
 
 
