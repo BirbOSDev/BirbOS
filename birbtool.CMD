@@ -52,7 +52,7 @@ cd ..
 cd ..
 echo Done!
 pause
-goto ldr
+goto brbldr
 
 :done
 md %u%
@@ -119,11 +119,10 @@ echo Your account was deleted successfully.
 goto ldr
 
 :check
-if NOT EXIST sys_apps echo "sys_apps" folder and its apps not found! Please re-install birbOS!
-if NOT EXIST sys_apps\bsod.birbapp echo bsod.birbapp not found! Please re-install birbOS!
 if NOT EXIST apps echo "apps" folder not found! Please re-install birbOS or create it, and inside it create a folder called "temp"!
 if NOT EXIST apps\temp echo "temp" folder not found! Please re-install birbOS or create it inside the "apps" folder!
 if NOT EXIST BOOT.BLDR echo BOOT.BLDR not found! Please re-install it to boot up birbOS!
+if NOT EXIST birbOS.cmd echo Main birbOS Module not found. reinstall to actually boot birbos up.
 echo.
 echo Please replace any missing files or folders!
 echo If no errors appeared above you're fine!
@@ -139,7 +138,7 @@ goto ldr
 timeout 4 /nobreak > nul
 echo Completing first time setup...
 timeout 1 /nobreak > nul
-echo first > fsetup.e
+echo "first-setup-complete" > fsetup.e
 echo done.
 echo press any key to continue to user creation.
 pause > nul

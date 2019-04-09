@@ -69,9 +69,6 @@ set /p setthm=<theme.birbtheme
 color %setthm%
 set "input="
 set /p input="%user%@birbOS ~:"
-if "%input%"=="owo" (echo uwu && goto prompt2)
-if "%input%"=="uwu" (echo owo && goto prompt2)
-if "%input%"=="birb" (echo BIIIIIIRB && goto prompt2)
 if "%input%"=="calculate" (goto :calculating)
 if "%input%"=="reboot /rec" (echo Rebooting! && timeout /t 3 /nobreak > nul && start .\birbtool.CMD && exit)
 if "%input%"=="reboot" (echo Rebooting birbOS. && timeout /t 3 /nobreak > nul && cls && color 07 && goto :SYSTEMSTARTUP)
@@ -126,7 +123,7 @@ echo %answer%
 goto prompt2
 
 :shutdownerr
-echo Command not implemented!
+echo Unknown command.
 goto prompt2
 
 :gueeees
