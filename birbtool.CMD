@@ -1,5 +1,5 @@
 @echo off
-:: birb bootloader v1.3
+:: birb bootloader v1.4
 :: github webhook test
 cls
 title BirbTool
