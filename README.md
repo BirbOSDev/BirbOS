@@ -1,4 +1,4 @@
-# BirbOS
+# BirbOS (DISCONTINUED)
 A basic Batch OS developed by Dukemz, xandrei and Ad2017.
 Current version: 8.3-1
 
