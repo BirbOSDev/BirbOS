@@ -3,3 +3,18 @@
 TUTORIAL https://www.youtube.com/watch?v=z7QzLIaDbOY
 
 https://github.com/BirbOSDev/birbos2/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+someone please delete this from existence
